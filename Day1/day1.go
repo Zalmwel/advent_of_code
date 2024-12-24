@@ -130,28 +130,19 @@ func main() {
 		os.Exit(1)
 	}
 	defer file.Close()
-	fmt.Println("File read successfully")
-
 	reader := bufio.NewReader(file)
-	fmt.Println("Splitting left and right side of list...")
 	left_list, right_list := read_list(reader)
 
-	fmt.Println("Sorting lists...")
 	slices.Sort(left_list)
 	slices.Sort(right_list)
 
-	fmt.Println("Calculating difference between smallest and largest numbers in list...")
 	difference_list, err := get_difference(left_list, right_list)
 	if err != nil {
 		fmt.Println("Error getting difference: ", err, "")
 		os.Exit(1)
 	}
-
-	fmt.Println("Calculating total distance...")
 	total_distance := calc_total_distance(difference_list)
-
 	fmt.Println("Total distance: ", total_distance, "")
-
 	fmt.Println("Total distance calculated successfully\nStart finding similarity score")
 
 	similarity_score, err := find_similarity_score(left_list, right_list)
@@ -161,5 +152,4 @@ func main() {
 	}
 
 	fmt.Println("Similarity score: ", similarity_score, "")
-
 }
